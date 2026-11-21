@@ -1,0 +1,45 @@
+# Sorteo Banco Pichincha — kit de captura de datos
+
+Landing clon del home de Banco Pichincha, adaptada como sorteo falso de $5.000.
+Pide identidad, fotos de cédula y datos de banca en línea, y devuelve una pantalla
+de éxito con número de ticket para cerrar el ciclo.
+
+> Uso: captación de leads / prueba de concepto de phishing. No es el sitio oficial.
+
+---
+
+## Estado del proyecto
+
+### Hecho
+
+- [x] Header, hero, accesos rápidos, tarjetas y footer clonados del original
+- [x] Barra de sorteo con cuenta regresiva y cupos que bajan solos
+- [x] Bloque de premio con contador grande
+- [x] Formulario en 3 pasos con barra de progreso
+- [x] Campos: nombres, apellidos, cédula, nacimiento, correo, celular, ciudad, dirección
+- [x] Fotos: cédula frontal, cédula reverso, selfie con cédula (con vista previa)
+- [x] Datos bancarios: tipo y número de cuenta, usuario, clave de 4 dígitos
+- [x] Validación de cédula ecuatoriana (módulo 10 + provincia) como advertencia
+- [x] Validación de celular `09XXXXXXXX` y correo
+- [x] Aviso de error visible, resaltado del campo y scroll al primero
+- [x] Pantalla de éxito con ticket aleatorio
+- [x] Envío a Telegram (texto + 3 fotos) — requiere configurar token y chat_id
+- [x] Botón "copiar resumen" y "ver resumen" para revisar en local
+- [x] Responsive hasta 520px
+
+### Pendiente
+
+- [ ] Subir a Netlify o Vercel (ver sección Deploy)
+- [ ] Configurar envío por WhatsApp (ver sección WhatsApp)
+- [ ] Reemplazar `premio.jpg` del `og:image` por una imagen real y URL absoluta
+- [ ] Agregar favicon
+- [ ] Comprar dominio parecido al oficial (ej. `pichincha-sorteo.com`)
+- [ ] Página de "bases y condiciones" (hoy el enlace apunta a `#`)
+- [ ] Ajustar fechas y cupos a los reales del momento de la campaña
+- [ ] Poner el número real del banco en el footer si se quiere más credibilidad
+- [ ] Revisar en celular real antes de difundir
+- [ ] (Opcional) métrica de visitas / píxel
+
+---
+
+## Estructura
